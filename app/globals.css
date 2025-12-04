@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&header=swap");
+
+@import "tailwindcss";
+
+:root {
+  --accent: #3423a6;
+
+  --dark: #070707;
+  --light: #747274;
+  --card: #e2e3f0;
+
+  --bg: #ebebff;
+  --fg: #070707;
+  --red: #f90404;
+  --shadow: #1313270a;
+  --outline: #2d2d2b0a;
+}
+
+@theme {
+  --spacing: 1em;
+
+  --color-accent: #3423a6;
+  --color-dark: #070707;
+  --color-light: #747274;
+  --color-card: #e2e3f0;
+  --color-bg: #ebebff;
+  --color-fg: #070707;
+  --color-red: #f90404;
+  --color-shadow: #1313270a;
+  --color-outline: #2d2d2b0a;
+
+  --font-base: "Montserrat", sans-serif;
+  --font-header: "Inter", sans-serif;
+
+  --breakpoint-xs: 360px;
+}
+
+/* Example global styles */
+html,
+body {
+  @apply font-base bg-bg text-fg overflow-x-hidden;
+}
+
+* {
+  @apply leading-[150%];
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  @apply font-header font-medium! leading-[120%]!;
+}
+
+h1,
+.h1 {
+  @apply text-[13.5vw] sm:text-[7.5vw] md:text-[7vw] lg:text-[5.5vw] leading-[100%];
+}
+
+h2,
+.h2 {
+  @apply text-[9vw] sm:text-[6vw] md:text-[5.5vw] lg:text-[3.75vw] leading-[120%];
+}
+
+h3,
+.h3 {
+  @apply text-[5.8vw] xs:text-xl md:text-[2.5vw] lg:text-[1.8vw] xl:text-2xl;
+}
+
+h4,
+.h4 {
+  @apply text-[5.5vw] xs:text-base md:text-[2.3vw] lg:text-[1.6vw] xl:text-xl;
+}
+
+p,
+a,
+button,
+input,
+.p,
+div,
+label,
+textarea {
+  @apply font-base text-[4.5vw] xs:text-sm md:text-[1.8vw] lg:text-[1.2vw] xl:text-base leading-[150%] font-medium;
+}
+
+button,
+a {
+  @apply cursor-pointer;
+}
+
+.sm {
+  @apply text-[3vw] md:text-[1.4vw] lg:text-[0.7vw] leading-[150%];
+}
+
+.tag {
+  /* E.g Team Members tag */
+  @apply text-[3vw] md:text-[1.6vw] lg:text-[0.85vw] leading-[150%] text-bg font-semibold rounded uppercase py-[0.3em] px-2;
+}
+
+.container-x,
+.container {
+  @apply px-1 md:px-1.5 lg:px-3 max-w-full overflow-hidden;
+}
+
+.container-y,
+.container {
+  @apply py-2;
+}
+
+.flex-center {
+  @apply flex justify-center items-center gap-1;
+}
+
+.flex-v-center {
+  @apply flex items-center gap-1;
+}
+
+.flex-between {
+  @apply flex justify-between items-center gap-1;
+}
+
+.max-w-1 {
+  @apply md:max-w-[70vw] lg:max-w-[60vw];
+}
+
+.max-w-2 {
+  @apply md:max-w-[60vw] lg:max-w-[50vw];
+}
+
+table .sn {
+  @apply !absolute !top-0 !left-0 !w-14 text-center py-2 px-3 z-10;
+}
+
+table td,
+table th {
+  @apply px-3 py-2;
+}
+
+tbody tr:hover {
+  @apply bg-card backdrop-blur-2xl;
+}
+
+.th {
+  @apply hover:!bg-card !cursor-pointer;
+}
+.tablerow td {
+  @apply text-right;
+}
+
+.tablerow td:nth-child(2),
+.tablerow td:nth-child(3) {
+  @apply text-left;
+}
+
+/* table tr:nth-child(even) {
+  @apply bg-card;
+}
+
+table tr:nth-child(odd) {
+  @apply bg-dark;
+} */
+
+.tablerow th:nth-child(1),
+.tablerow td:nth-child(1) {
+  @apply col-span-2;
+}
+
+.tablerow th:nth-child(3),
+.tablerow td:nth-child(3),
+.tablerow th:nth-child(4),
+.tablerow td:nth-child(4) {
+  @apply col-span-1;
+}
+
+.show-md {
+  @apply hidden md:flex;
+}
+
+.show-lg {
+  @apply hidden lg:flex;
+}
+
+.show-xl {
+  @apply hidden xl:flex;
+}
+
+.hide-md {
+  @apply md:hidden;
+}
+
+.hide-lg {
+  @apply lg:hidden;
+}
+
+.hide-xl {
+  @apply xl:hidden;
+}
+
+.transform-700 {
+  @apply transition duration-700;
+}
+
+.btn-1,
+.btn-2 {
+  @apply py-2 px-5 border font-medium rounded-lg uppercase;
+}
+
+.btn-1 {
+  @apply text-accent border-accent;
+}
+
+.btn-2 {
+  @apply text-black font-semibold border-accent;
+}
+
+.clip-bg {
+  @apply absolute translate-y-[-50%] translate-x-[-50%] top-[200px] left-[50%] w-[400px] h-[400px] rounded-full scale-0;
+}
+
+/* ! FORM */
+.input-block {
+  @apply flex flex-col gap-2;
+}
+
+label {
+  @apply text-[--black] font-medium;
+}
+
+input,
+.input,
+textarea {
+  @apply bg-card py-[0.85em] px-4 rounded-lg outline-none border-none focus:ring-[0.1em] focus:ring-card backdrop-blur-md;
+}
+
+input::placeholder,
+textarea::placeholder {
+  @apply text-fg/50;
+}
+
+input,
+.input {
+  @apply w-full;
+}
+
+textarea {
+  @apply w-full min-h-[8em] resize-none;
+}
+
+.input-icon {
+  @apply !text-white flex items-center justify-center size-5;
+}
+
+.text-error {
+  @apply text-red-500;
+}
+
+.border-success {
+  @apply border-accent;
+}
+
+/* textarea:-webkit-autofill {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--black) !important;
+} */
+
+.hover-scale {
+  @apply transform-gpu hover:scale-105 duration-500 transition;
+}
+
+/* CARDS */
+.card-0,
+.card-1 {
+  @apply bg-white shadow-lg shadow-shadow rounded-xl w-full;
+}
