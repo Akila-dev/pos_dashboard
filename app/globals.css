@@ -7,13 +7,15 @@
 
   --dark: #070707;
   --light: #747274;
-  --card: #e2e3f0;
+  --card: #f3f3f8;
 
   --bg: #ebebff;
   --fg: #070707;
   --red: #f90404;
   --shadow: #1313270a;
   --outline: #2d2d2b0a;
+
+  /* --rdp-accent-color: red !important; */
 }
 
 @theme {
@@ -22,7 +24,7 @@
   --color-accent: #3423a6;
   --color-dark: #070707;
   --color-light: #747274;
-  --color-card: #e2e3f0;
+  --color-card: #f3f3f8;
   --color-bg: #ebebff;
   --color-fg: #070707;
   --color-red: #f90404;
@@ -33,6 +35,10 @@
   --font-header: "Inter", sans-serif;
 
   --breakpoint-xs: 360px;
+}
+
+.rdp-root {
+  --rdp-accent-color: var(--accent) !important;
 }
 
 /* Example global styles */
@@ -93,12 +99,7 @@ a {
 }
 
 .sm {
-  @apply text-[3vw] md:text-[1.4vw] lg:text-[0.7vw] leading-[150%];
-}
-
-.tag {
-  /* E.g Team Members tag */
-  @apply text-[3vw] md:text-[1.6vw] lg:text-[0.85vw] leading-[150%] text-bg font-semibold rounded uppercase py-[0.3em] px-2;
+  @apply text-[3.5vw]! xs:text-xs! md:text-[1.5vw] lg:text-[1vw]! xl:text-sm! leading-[150%];
 }
 
 .container-x,
@@ -131,50 +132,65 @@ a {
   @apply md:max-w-[60vw] lg:max-w-[50vw];
 }
 
-table .sn {
-  @apply !absolute !top-0 !left-0 !w-14 text-center py-2 px-3 z-10;
+/* ! TABLES START */
+.table td,
+.table th {
+  @apply px-1 py-0.75 text-left;
 }
 
-table td,
-table th {
-  @apply px-3 py-2;
+.table th {
+  @apply font-medium py-1! font-header;
 }
 
-tbody tr:hover {
-  @apply bg-card backdrop-blur-2xl;
-}
-
-.th {
-  @apply hover:!bg-card !cursor-pointer;
-}
-.tablerow td {
-  @apply text-right;
-}
-
-.tablerow td:nth-child(2),
-.tablerow td:nth-child(3) {
-  @apply text-left;
-}
-
-/* table tr:nth-child(even) {
+.table tr:nth-child(even),
+.table th {
   @apply bg-card;
 }
 
-table tr:nth-child(odd) {
-  @apply bg-dark;
-} */
+.table tr:nth-child(odd) {
+  @apply bg-white;
+}
 
-.tablerow th:nth-child(1),
-.tablerow td:nth-child(1) {
+/* ORDER LIST TABLE */
+.order-list-table {
+  @apply w-full min-w-75;
+}
+
+.order-list-table tr {
+  @apply grid grid-cols-12 w-full items-center;
+}
+.order-list-table tr th:nth-child(1),
+.order-list-table tr td:nth-child(1),
+.order-list-table tr th:nth-child(2),
+.order-list-table tr td:nth-child(2),
+.order-list-table tr th:nth-child(3),
+.order-list-table tr td:nth-child(3),
+.order-list-table tr th:nth-child(4),
+.order-list-table tr td:nth-child(4),
+.order-list-table tr th:nth-child(6),
+.order-list-table tr td:nth-child(6) {
   @apply col-span-2;
 }
 
-.tablerow th:nth-child(3),
-.tablerow td:nth-child(3),
-.tablerow th:nth-child(4),
-.tablerow td:nth-child(4) {
-  @apply col-span-1;
+/* CUSTOMER LIST TABLE */
+.customer-list-table {
+  @apply w-full min-w-50;
 }
+
+.customer-list-table tr {
+  @apply grid grid-cols-8 w-full items-center;
+}
+
+.customer-list-table tr th,
+.customer-list-table tr td {
+  @apply col-span-3 py-1.25;
+}
+.customer-list-table tr th:nth-child(3),
+.customer-list-table tr td:nth-child(3) {
+  @apply col-span-2;
+}
+
+/* ! TABLES END */
 
 .show-md {
   @apply hidden md:flex;
@@ -200,8 +216,16 @@ table tr:nth-child(odd) {
   @apply xl:hidden;
 }
 
-.transform-700 {
+.transition-500 {
+  @apply transition duration-500;
+}
+
+.transition-700 {
   @apply transition duration-700;
+}
+
+.filter-btn {
+  @apply text-left rounded-[0.5em] p-0.5 md:px-1 bg-white border border-outline;
 }
 
 .btn-1,
@@ -230,15 +254,15 @@ label {
   @apply text-[--black] font-medium;
 }
 
-input,
+/* input,
 .input,
 textarea {
-  @apply bg-card py-[0.85em] px-4 rounded-lg outline-none border-none focus:ring-[0.1em] focus:ring-card backdrop-blur-md;
-}
+  @apply bg-card py-0.5 px-1 rounded-lg outline-none border-none focus:ring-[0.1em] focus:ring-card backdrop-blur-md;
+} */
 
 input::placeholder,
 textarea::placeholder {
-  @apply text-fg/50;
+  @apply text-fg/60;
 }
 
 input,
@@ -275,4 +299,8 @@ textarea {
 .card-0,
 .card-1 {
   @apply bg-white shadow-lg shadow-shadow rounded-xl w-full;
+}
+
+.card-1 {
+  @apply p-1;
 }

@@ -1,4 +1,4 @@
-export const CUSTOMERS = [
+export const CUSTOMERS_DATA = [
   {
     id: 1,
     name: "John Doe",
@@ -9,7 +9,7 @@ export const CUSTOMERS = [
     id: 2,
     name: "Jane Doe",
     email: "janedoe@gmail.com",
-    phone_number: "7045454545",
+    phone_number: "7045454525",
   },
   {
     id: 3,

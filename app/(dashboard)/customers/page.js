@@ -1,9 +1,13 @@
 "use server";
 
+import { Customers } from "@/containers";
+
+import data from "@/dummy/data";
+
 export default async function Page() {
   return (
-    <div className="">
-      <main className="">Page</main>
-    </div>
+    <main className="container">
+      <Customers data={data.CUSTOMERS_DATA} />
+    </main>
   );
 }

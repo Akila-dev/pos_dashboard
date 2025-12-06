@@ -1,4 +1,5 @@
 import "./globals.css";
+import "react-day-picker/style.css";
 
 export const metadata = {
   title: "Create Next App",

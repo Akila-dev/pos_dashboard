@@ -1,6 +1,6 @@
-import { CUSTOMERS } from "./customers.js";
+import { CUSTOMERS_DATA } from "./customers.js";
 
-const customers = CUSTOMERS;
+const customers = CUSTOMERS_DATA;
 
 const orderItemsVariant1 = [
   {
@@ -64,85 +64,43 @@ const orderItemsVariant2 = [
   },
 ];
 
-export const ORDERS = [
-  {
-    id: 1,
-    customer: customers[0],
-    orderType: "Online Order Pickup",
-    amount: 59.99,
-    status: {
-      paymentStatus: "Paid",
-      shippingStatus: "Shipped",
-      orderStatus: "Completed",
-      paymentType: "Credit Card",
-    },
-    orderDate: "2024-06-15, 10:30 AM",
-    source: "Online Store",
-    receipt: "/",
-    orderItems: orderItemsVariant1,
-  },
-  {
-    id: 1,
-    customer: customers[1],
-    orderType: "Online Order Pickup",
-    amount: 59.99,
-    status: {
-      paymentStatus: "Paid",
-      shippingStatus: "Shipped",
-      orderStatus: "Completed",
-      paymentType: "Credit Card",
-    },
-    orderDate: "2024-06-15, 10:30 AM",
-    source: "Online Store",
-    receipt: "/",
-    orderItems: orderItemsVariant2,
-  },
-  {
-    id: 1,
-    customer: customers[2],
-    orderType: "Online Order Pickup",
-    amount: 59.99,
-    status: {
-      paymentStatus: "Paid",
-      shippingStatus: "Shipped",
-      orderStatus: "Completed",
-      paymentType: "Credit Card",
-    },
-    orderDate: "2024-06-15, 10:30 AM",
-    source: "Online Store",
-    receipt: "/",
-    orderItems: orderItemsVariant1,
-  },
-  {
-    id: 1,
-    customer: customers[3],
-    orderType: "Online Order Pickup",
-    amount: 59.99,
-    status: {
-      paymentStatus: "Paid",
-      shippingStatus: "Shipped",
-      orderStatus: "Completed",
-      paymentType: "Credit Card",
-    },
-    orderDate: "2024-06-15, 10:30 AM",
-    source: "Online Store",
-    receipt: "/",
-    orderItems: orderItemsVariant2,
-  },
-  {
-    id: 1,
-    customer: customers[4],
-    orderType: "Online Order Pickup",
-    amount: 59.99,
-    status: {
-      paymentStatus: "Paid",
-      shippingStatus: "Shipped",
-      orderStatus: "Completed",
-      paymentType: "Credit Card",
-    },
-    orderDate: "2024-06-15, 10:30 AM",
-    source: "Online Store",
-    receipt: "/",
-    orderItems: orderItemsVariant1,
-  },
+const ordersData = [];
+export const orderTypes = [
+  "Online Order Pickup",
+  "Dine-in",
+  "Takeaway",
+  "Delivery",
 ];
+export const orderStatuses = ["Paid", "Pending", "Cancelled"];
+const paymentTypes = ["Credit Card", "Cash", "Mobile Payment"];
+const orderSources = ["Online Store", "In-Person"];
+const orderVariants = [orderItemsVariant1, orderItemsVariant2];
+
+for (let i = 0; i < 35; i++) {
+  const d = new Date();
+  const date = d.setDate(d.getDate() - i);
+
+  const orderType = orderTypes[Math.floor(Math.random() * 4)];
+  const paymentStatus = orderStatuses[Math.floor(Math.random() * 3)];
+  const paymentType = paymentTypes[Math.floor(Math.random() * 3)];
+  const orderSource = orderSources[Math.floor(Math.random() * 2)];
+  const orderVariant = orderVariants[Math.floor(Math.random() * 2)];
+  const customer = customers[Math.floor(Math.random() * customers.length)];
+
+  ordersData.push({
+    id: i,
+    customer: customer,
+    orderType: orderType,
+    amount: 59.99,
+    status: {
+      paymentStatus: paymentStatus,
+      paymentType: paymentType,
+    },
+    orderDate: date,
+    source: orderSource,
+    receipt: "/",
+    orderItems: orderVariant,
+  });
+}
+
+export const ORDERS_DATA = ordersData;

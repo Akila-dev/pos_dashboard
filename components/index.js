@@ -10,6 +10,7 @@ export { default as InputBlock } from "./form/InputBlock";
 export { default as FilterDropdown } from "./form/FilterDropdown";
 export { default as DateFilter } from "./form/DateFilter";
 export { default as FilterSearchDropdown } from "./form/FilterSearchDropdown";
+export { default as SearchInput } from "./form/SearchInput";
 
 // OVERVIEW COMPONENTS
 export { default as OverviewInfoCard } from "./overview/OverviewInfoCard";
