@@ -100,6 +100,10 @@ for (let i = 0; i < 35; i++) {
     source: orderSource,
     receipt: "/",
     orderItems: orderVariant,
+    receipt: {
+      url: "/",
+      label: "Receipt-SOA" + i,
+    },
   });
 }
 

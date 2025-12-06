@@ -23,3 +23,7 @@ export { default as CustomerListTable } from "./tables/CustomerListTable";
 
 // LAYOUT COMPONENTS
 export { default as Sidebar } from "./Sidebar";
+
+// CARDS
+export { default as CustomerInfoCard } from "./cards/CustomerInfoCard";
+export { default as OrderInfoCard } from "./cards/OrderInfoCard";

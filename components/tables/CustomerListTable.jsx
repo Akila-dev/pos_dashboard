@@ -8,7 +8,7 @@ import { Button } from "@/components";
 
 const TableCard = ({ data, index }) => (
   <tr className="text-center">
-    <td className="">{data?.name}</td>
+    <td className="text-accent">{data?.name}</td>
     <td className="">{data?.email}</td>
     <td className="">{data?.phone_number}</td>
   </tr>
@@ -47,18 +47,18 @@ const CustomerListTable = ({ data, noFiltering }) => {
 
   return (
     <div className="overflow-x-auto space-y-1">
-      <table className="table customer-list-table sm">
+      <table className="table customer-list-table p">
         <thead className="">
           <tr>
             <th className="w-full">
               {noFiltering ? (
-                <span className="sm">Full Name</span>
+                <span className="">Full Name</span>
               ) : (
                 <button
                   className="flex-between w-full font-medium font-header!"
                   onClick={() => setSortCustomers((prev) => (prev + 1) % 3)}
                 >
-                  <span className="sm">Full Name</span>
+                  <span className="">Full Name</span>
                   <span className="flex flex-col">
                     <ChevronDown
                       size={14}

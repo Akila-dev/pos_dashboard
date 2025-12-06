@@ -90,7 +90,7 @@ input,
 div,
 label,
 textarea {
-  @apply font-base text-[4.5vw] xs:text-sm md:text-[1.8vw] lg:text-[1.2vw] xl:text-base leading-[150%] font-medium;
+  @apply font-base text-[4vw] xs:text-sm md:text-[1.6vw] lg:text-[1vw] xl:text-sm leading-[150%] font-medium;
 }
 
 button,
@@ -187,6 +187,33 @@ a {
 }
 .customer-list-table tr th:nth-child(3),
 .customer-list-table tr td:nth-child(3) {
+  @apply col-span-2;
+}
+
+/* ORDER ITEMS LIST TABLE */
+.order-items-list-table {
+  @apply w-full min-w-50;
+}
+
+.order-items-list-table tr {
+  @apply grid grid-cols-5 w-full items-center border-b border-light/50;
+}
+
+.order-items-list-table tr:nth-child(even),
+.order-items-list-table th {
+  @apply bg-white;
+}
+
+.order-items-list-table tr:nth-child(odd) {
+  @apply bg-card;
+}
+
+.order-items-list-table tr th,
+.order-items-list-table tr td {
+  @apply col-span-1 py-1.5 lg:px-2;
+}
+.order-items-list-table tr th:nth-child(1),
+.order-items-list-table tr td:nth-child(1) {
   @apply col-span-2;
 }
 
@@ -298,7 +325,7 @@ textarea {
 /* CARDS */
 .card-0,
 .card-1 {
-  @apply bg-white shadow-lg shadow-shadow rounded-xl w-full;
+  @apply bg-white shadow-lg shadow-shadow rounded-[0.5em] w-full overflow-clip;
 }
 
 .card-1 {
