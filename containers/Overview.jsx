@@ -20,14 +20,16 @@ const Overview = ({ data }) => {
   return (
     <div className="flex flex-col gap-2">
       {/* Filters */}
-      <div className="flex-between">
-        <h3>Reports</h3>
-        <div className="flex-v-center">
+      <div className="flex-between flex-wrap">
+        <div className="flex-between flex-1">
+          <h3>Reports</h3>
           <FilterSearchDropdown
             list={["All", "Mystic Spice", "Chicken"]}
             setFilterProp={null}
           />
-          <DateFilter setFilterProp={null} />
+        </div>
+        <div className="flex-v-center flex-1 min-w-8">
+          <DateFilter />
         </div>
       </div>
 

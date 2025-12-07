@@ -1,7 +1,7 @@
-import React from "react";
+"use client";
 
 const OverviewInfoGraphics = () => {
-  return <div>OverviewInfoGraphics</div>;
+  return <div></div>;
 };
 
 export default OverviewInfoGraphics;

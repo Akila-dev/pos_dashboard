@@ -6,10 +6,13 @@ import { OrderInfoCard, CustomerInfoCard, OrderItemsTable } from "@/components";
 import data from "@/dummy/data";
 
 export default async function Page({ params }) {
-  const { slug } = await params;
+  // const page_data = await getPageData(params);
+  // if (!page_data) return notFound();
+
+  const p_slug = await params;
 
   const page_data = data.ORDERS_DATA.find(
-    (order) => String(order.id) === String(slug)
+    (order) => String(order.id) === String(p_slug.slug)
   );
 
   if (!page_data) return notFound();
@@ -19,22 +22,21 @@ export default async function Page({ params }) {
       <div className="flex flex-col gap-2 lg:gap-3">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-1.5 lg:gap-2">
           <OrderInfoCard
-            paymentStatus={page_data.status.paymentStatus}
-            orderId={page_data.id}
-            orderDate={page_data.orderDate}
-            orderingMethod={page_data.orderType}
-            paymentMethod={page_data.status.paymentType}
-            receipt={page_data.receipt}
-            orderSource={page_data.source}
+            paymentStatus={page_data?.status?.paymentStatus}
+            orderId={page_data?.id}
+            orderDate={page_data?.orderDate}
+            orderingMethod={page_data?.orderType}
+            paymentMethod={page_data?.status?.paymentType}
+            receipt={page_data?.receipt}
+            orderSource={page_data?.source}
           />
-          <CustomerInfoCard data={page_data.customer} />
+          <CustomerInfoCard data={page_data?.customer} />
         </div>
-
         {/* Table */}
         <div>
           <h3 className="mb-0.75">Order Items</h3>
           <div className="card-0">
-            <OrderItemsTable data={page_data.orderItems} />
+            <OrderItemsTable data={page_data?.orderItems} />
           </div>
         </div>
       </div>
