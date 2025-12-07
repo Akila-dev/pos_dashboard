@@ -13,7 +13,7 @@
   --fg: #070707;
   --red: #f90404;
   --shadow: #1313270a;
-  --outline: #2d2d2b0a;
+  --outline: #2d2d2b26;
 
   /* --rdp-accent-color: red !important; */
 }
@@ -29,7 +29,7 @@
   --color-fg: #070707;
   --color-red: #f90404;
   --color-shadow: #1313270a;
-  --color-outline: #2d2d2b0a;
+  --color-outline: #2d2d2b26;
 
   --font-base: "Montserrat", sans-serif;
   --font-header: "Inter", sans-serif;

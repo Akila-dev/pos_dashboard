@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
+import moment from "moment";
 
 import {
   FilterSearchDropdown,
@@ -10,12 +11,68 @@ import {
 } from "@/components";
 
 const Overview = ({ data }) => {
-  const [filterItemProp, setFilterItemProp] = useState("All");
-  const [filterDateProp, setFilterDateProp] = useState("last_7_days");
-  const [initData, setInitData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const originalData = useMemo(() => data, [data]);
 
-  useEffect(() => {}, [filterItemProp]);
+  const [orderDateFilter, setOrderDateFilter] = useState({
+    from: null,
+    to: null,
+  });
+  const [itemFilter, setItemFilter] = useState("All");
+
+  // Handle Date Range change from Date filter
+  const handleRangeChange = ({ from, to }) => {
+    setOrderDateFilter({ from, to });
+  };
+
+  const chartData = useMemo(() => {
+    let filtered = [...originalData];
+    let infographicsData = [];
+
+    // Date filter
+    if (orderDateFilter?.from && orderDateFilter?.to) {
+      const fromDate = new Date(orderDateFilter.from);
+      fromDate.setHours(0, 0, 0, 0);
+      const toDate = new Date(orderDateFilter.to);
+      toDate.setHours(23, 59, 59, 999);
+
+      filtered = filtered.filter((info) => {
+        const d = new Date(info.date);
+        return d >= fromDate && d <= toDate;
+      });
+    }
+
+    // Order Type Filter
+    for (let i = 0; i < filtered.length; i++) {
+      const element = filtered[i];
+      let filteredPurchase = [...element.purchase];
+
+      if (itemFilter) {
+        if (itemFilter !== "All") {
+          filteredPurchase = filteredPurchase.filter(
+            (purchase) => purchase.item === itemFilter
+          );
+        } else {
+          filteredPurchase = [
+            filteredPurchase.reduce(
+              (acc, item) => ({
+                val_1: acc.val_1 + item.val_1,
+                val_2: acc.val_2 + item.val_2,
+              }),
+              { val_1: 0, val_2: 0 }
+            ),
+          ];
+        }
+      }
+
+      infographicsData.push({
+        date: moment(filtered[i].date).format("DD-MM-YYYY"),
+        revenue: filteredPurchase[0].val_1,
+        orders: filteredPurchase[0].val_2,
+      });
+    }
+
+    return infographicsData;
+  }, [originalData, orderDateFilter, itemFilter]);
 
   return (
     <div className="flex flex-col gap-2">
@@ -29,33 +86,34 @@ const Overview = ({ data }) => {
           />
         </div>
         <div className="flex-v-center flex-1 min-w-8">
-          <DateFilter />
+          <DateFilter onRangeChange={handleRangeChange} />
         </div>
       </div>
 
       {/* Overview Info */}
       <div className="card-0">
-        <div>
+        <div className="p-1 border-b border-outline">
           <h3>Orders Overview</h3>
         </div>
-        <div>
+        <div className="flex-v-center gap-0! px-1 mb-1.5">
           <OverviewInfoCard
             title="Revenue"
             value="$24,567.89"
             change="0.2%"
+            positiveChange
             changeVal="$3,400.00"
             highlight
           />
 
           <OverviewInfoCard
-            title="Revenue"
-            value="$24,567.89"
-            change="0.2%"
-            changeVal="$3,400.00"
+            title="Orders"
+            value="60"
+            change="0.16%"
+            changeVal="10"
           />
         </div>
-        <div>
-          <OverviewInfoGraphics />
+        <div className="px-1">
+          <OverviewInfoGraphics data={chartData} />
         </div>
       </div>
     </div>
