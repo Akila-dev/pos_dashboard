@@ -10,6 +10,8 @@ import {
   OverviewInfoGraphics,
 } from "@/components";
 
+import { posItemsList } from "@/dummy/data/infographics";
+
 const Overview = ({ data }) => {
   const originalData = useMemo(() => data, [data]);
 
@@ -74,16 +76,29 @@ const Overview = ({ data }) => {
     return infographicsData;
   }, [originalData, orderDateFilter, itemFilter]);
 
+  function percentageDifference(a, b) {
+    if (a === 0 && b === 0) return 0; // avoid division by zero
+
+    const difference = Math.abs(a - b);
+    const average = (a + b) / 2;
+
+    const result = (difference / average) * 100;
+
+    return Number(result.toFixed(2));
+  }
+
   return (
     <div className="flex flex-col gap-2">
       {/* Filters */}
       <div className="flex-between flex-wrap">
-        <div className="flex-between flex-1">
+        <div className="flex-between flex-1 lg:gap-3">
           <h3>Reports</h3>
-          <FilterSearchDropdown
-            list={["All", "Mystic Spice", "Chicken"]}
-            setFilterProp={null}
-          />
+          <div className="w-full min-w-8 max-w-15 lg:max-w-20">
+            <FilterSearchDropdown
+              list={["All", ...posItemsList]}
+              setItem={setItemFilter}
+            />
+          </div>
         </div>
         <div className="flex-v-center flex-1 min-w-8">
           <DateFilter onRangeChange={handleRangeChange} />
@@ -98,18 +113,33 @@ const Overview = ({ data }) => {
         <div className="flex-v-center gap-0! px-1 mb-1.5">
           <OverviewInfoCard
             title="Revenue"
-            value="$24,567.89"
-            change="0.2%"
-            positiveChange
-            changeVal="$3,400.00"
+            value={`$${chartData[chartData.length - 1].revenue}`}
+            change={percentageDifference(
+              chartData[chartData.length - 1].revenue,
+              chartData[0].revenue
+            )}
+            changeVal={`${Math.abs(
+              chartData[chartData.length - 1].revenue - chartData[0].revenue
+            ).toFixed(2)}`}
+            positiveChange={
+              chartData[chartData.length - 1].revenue > chartData[0].revenue
+            }
             highlight
           />
 
           <OverviewInfoCard
             title="Orders"
-            value="60"
-            change="0.16%"
-            changeVal="10"
+            value={chartData[chartData.length - 1].orders}
+            change={percentageDifference(
+              chartData[chartData.length - 1].orders,
+              chartData[0].orders
+            )}
+            changeVal={`${Math.abs(
+              chartData[chartData.length - 1].orders - chartData[0].orders
+            ).toFixed(2)}`}
+            positiveChange={
+              chartData[chartData.length - 1].orders > chartData[0].orders
+            }
           />
         </div>
         <div className="px-1">

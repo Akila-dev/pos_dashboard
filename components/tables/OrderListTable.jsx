@@ -143,13 +143,15 @@ const OrderListTable = ({ data, noFiltering }) => {
           ))}
         </tbody>
       </table>
-      <div className="flex-center py-1">
-        <Button
-          text="Load More"
-          onClick={() => setMultiplier((prev) => prev + 1)}
-          disabled={maxLen * multiplier >= sortedData.length}
-        />
-      </div>
+      {!noFiltering && (
+        <div className="flex-center py-1">
+          <Button
+            text="Load More"
+            onClick={() => setMultiplier((prev) => prev + 1)}
+            disabled={maxLen * multiplier >= sortedData.length}
+          />
+        </div>
+      )}
     </div>
   );
 };
