@@ -92,7 +92,7 @@ const Orders = ({ data }) => {
       </div>
 
       {/* Filters */}
-      <div className="card-1 grid grid-cols-1 lg:grid-cols-2 gap-1 items-center">
+      <div className="card-1 grid grid-cols-1 lg:grid-cols-2 gap-1 items-center overflow-visible!">
         <div className="border-b lg:border-b-0 border-outline pb-1 lg:pb-0">
           <SearchInput setSearch={setSearchFilter} />
         </div>
