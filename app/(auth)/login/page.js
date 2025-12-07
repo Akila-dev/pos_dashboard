@@ -27,7 +27,8 @@ export default async function Login() {
               Forgot Password
             </Link>
           </div>
-          <Button text="Login" type="submit" className="w-full" />
+          <Button text="Login" link="/" className="w-full block text-center" />
+          {/* <Button text="Login" type="submit" className="w-full" /> */}
         </form>
       </div>
     </main>
