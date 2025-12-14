@@ -39,7 +39,7 @@ const FilterDropdown = ({ title, list, sm, setItem }) => {
         className="filter-btn w-full bg-card/80! flex-between gap-0.5!"
         onClick={() => setShowDropdown((prev) => !prev)}
       >
-        <span className="line-clamp-1! sm">
+        <span className={`"line-clamp-1! ${sm ? "sm" : ""}`}>
           {title}: {activeFilter}
         </span>
         <ChevronDown

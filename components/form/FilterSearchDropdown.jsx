@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { ChevronDown } from "lucide-react";
 import { SearchInput } from "@/components";
 
-const FilterSearchDropdown = ({ list, setItem }) => {
+const FilterSearchDropdown = ({ list, setItem, sm }) => {
   const [activeFilter, setActiveFilter] = useState(list[0]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [listSearchFilter, setListSearchFilter] = useState("");
@@ -51,7 +51,9 @@ const FilterSearchDropdown = ({ list, setItem }) => {
         className="filter-btn w-full bg-white! flex-between gap-0.5!"
         onClick={() => setShowDropdown((prev) => !prev)}
       >
-        <span className="line-clamp-1! sm">{activeFilter}</span>
+        <span className={`"line-clamp-1! ${sm ? "sm" : ""}`}>
+          {activeFilter}
+        </span>
         <ChevronDown
           size={14}
           className={`min-w-1 ${

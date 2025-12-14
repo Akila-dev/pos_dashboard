@@ -11,7 +11,7 @@ import { Button } from "@/components";
 const OrderStatus = ({ data }) => (
   <div>
     <p
-      className={`sm uppercase ${
+      className={`uppercase ${
         data?.paymentStatus === "Paid"
           ? "text-green-500"
           : data?.paymentStatus === "Pending"
@@ -47,7 +47,7 @@ const TableCard = ({ data, index }) => (
     <td className="">
       <Link
         href={`/order-details/${data?.id}`}
-        className="text-accent sm hover:scale-110 transition-500 inline-block"
+        className="text-accent hover:scale-110 transition-500 inline-block"
       >
         #SK-00{index + 1}
       </Link>
@@ -98,19 +98,19 @@ const OrderListTable = ({ data, noFiltering }) => {
 
   return (
     <div className="overflow-x-auto space-y-1">
-      <table className="table order-list-table sm">
+      <table className="table order-list-table">
         <thead className="">
           <tr>
             <th className="">Order Number</th>
             <th className="w-full">
               {noFiltering ? (
-                <span className="sm">Customer</span>
+                <span className="">Customer</span>
               ) : (
                 <button
                   className="flex-between w-full font-medium font-header!"
                   onClick={() => setSortOrder((prev) => (prev + 1) % 3)}
                 >
-                  <span className="sm">Customer</span>
+                  <span className="">Customer</span>
                   <span className="flex flex-col">
                     <ChevronDown
                       size={14}

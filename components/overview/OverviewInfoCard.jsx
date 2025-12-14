@@ -20,7 +20,7 @@ const OverviewInfoCard = ({
     >
       <p className="sm">{title}</p>
       <h4>{value}</h4>
-      <p className="sm text-light flex-v-center gap-0.5!">
+      <p className="text-light flex-v-center gap-0.5!">
         <span className={positiveChange ? "text-green-500" : "text-red"}>
           <ChevronDown
             size={16}
